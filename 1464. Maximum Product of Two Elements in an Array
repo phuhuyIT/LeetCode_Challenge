@@ -1,0 +1,31 @@
+public class Solution {
+    private void swap(ref int a, ref int b)
+    {
+        int temp= a;
+        a=b;
+        b=temp;
+    }
+    public void heapify(ref int[] nums, int n){
+        for(int i =n; i>0;i--)
+        {
+            int fatIndex = (i-1)/2;
+            if(nums[i]<nums[fatIndex]){
+                swap(ref nums[i],ref nums[fatIndex]);
+            }
+        }
+    }
+    public void heapSort(ref int[] nums)
+    {
+        int n = nums.Length-1;
+        for(int i=0;i<nums.Length-1;i++)
+        {
+            heapify(ref nums, n);
+            swap(ref nums[0],ref nums[n]);
+            n--;
+        }
+    }
+    public int MaxProduct(int[] nums) {
+        heapSort(ref nums);
+        return (nums[0]-1)*(nums[1]-1);
+    }
+}
