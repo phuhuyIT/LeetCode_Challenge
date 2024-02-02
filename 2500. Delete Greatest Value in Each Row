@@ -1,0 +1,42 @@
+public class Solution {
+    private void swap (ref int a, ref int b){
+        int temp = a;
+        a = b;
+        b = temp;
+    }
+    private void heapify(ref int[][] grid, int n, int m){
+        for(int i = n; i>0;i--){
+            int fatIndex = (i-1)/2;
+            if(grid[m][i]>grid[m][fatIndex]){
+                swap(ref grid[m][i], ref grid[m][fatIndex]);
+            }
+        }
+    }
+    private void heapSort(ref int[][] grid){
+        int m = grid.Length;
+        int n = grid[0].Length;
+        for(int i = 0; i<m;i++){
+            for(int j = 0 ; j< grid[0].Length;j++){
+                heapify(ref grid, n-1, i);
+                swap(ref grid[i][0], ref grid[i][n-1]);
+                n--;
+            }
+        }
+    }
+    public int DeleteGreatestValue(int[][] grid) {
+        int result =0;
+        heapSort(ref grid);
+        for(int i = 0; i<grid[0].Length;i++)
+        {
+            int max=0;
+            for(int j = 0; j<grid.Length; j++)
+            {
+                if(grid[j][i]>max){
+                    max= grid[j][i];
+                }
+            }
+            result+=max;
+        }
+        return result;
+    }
+}
