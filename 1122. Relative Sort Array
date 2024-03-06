@@ -1,0 +1,59 @@
+public class Solution {
+    public int[] RelativeSortArray(int[] arr1, int[] arr2) {
+        int h=0;
+        for(int i =0 ;i<arr2.Length;i++)
+        {
+            int k=0;
+            for(;k<arr1.Length;k++)
+            {
+                if(arr1[k]==arr2[i])
+                {
+                    Swap(ref arr1[k],ref arr1[h]);
+                    h++;
+                }
+            }
+        }
+
+        QuickSort(h,arr1.Length-1,arr1);
+        return arr1;
+    }
+    public void QuickSort(int l, int h, int[] arr)
+    {
+        if (l < h)
+        {
+            int j = Partition(l, h, arr);
+            QuickSort(l, j - 1, arr);
+            QuickSort(j + 1,h, arr);
+        }
+    }
+
+    private void Swap(ref int a, ref int b)
+    {
+        int temp = a;
+        a = b;
+        b = temp;
+    }
+
+    private int Partition(int l, int h, int[] arr)
+    {
+        int pivot = arr[l];
+        int i = l, j = h;
+        while (i < j)
+        {
+            while (i < arr.Length && arr[i] <= pivot)
+            {
+                i++;
+            }
+            while (arr[j] > pivot)
+            {
+                j--;
+            }
+            if (i < j)
+            {
+                Swap(ref arr[i], ref arr[j]);
+            }
+        }
+        Swap(ref arr[l], ref arr[j]);
+        return j;
+    }
+}
