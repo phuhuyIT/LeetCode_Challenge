@@ -1,0 +1,23 @@
+class Solution {
+    public int maxAscendingSum(int[] nums) {
+        int head=1;
+        int max=nums[0];
+        int sum=nums[0];
+        for(;head<nums.length;head++)
+        {
+            if(nums[head]>nums[head-1])
+            {
+                sum+=nums[head];
+                if(sum>max)
+                {
+                    max=sum;
+                }
+            }
+            else
+            {
+                sum=nums[head];
+            }
+        }
+        return max;
+    }
+}
