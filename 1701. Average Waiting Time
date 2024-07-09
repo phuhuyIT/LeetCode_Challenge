@@ -3,11 +3,11 @@ public class Solution {
         int timeLine = 0; // Biết đang ở mấy giờ
         double sumWaitingTime = 0; // tính tổng thời gian chờ
         for(int i = 0; i< customers.GetLength(0); i++){
-           if(timeLine > customers[i][0]){
+           if(timeLine > customers[i][0]){ // Ông đầu bếp đang bận mà có khách tới
             timeLine += customers[i][1];
             sumWaitingTime += timeLine - customers[i][0];
            }
-           else{
+           else{ // ông đầu bếp rảnh mà có khách tới
             timeLine = customers[i][0] + customers[i][1]; 
             sumWaitingTime += customers[i][1];
            }
